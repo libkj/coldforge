@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'coldforge.urls'
+ROOT_URLCONF = 'framework.urls'
 
 TEMPLATES = [
     {
@@ -67,7 +67,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'coldforge.wsgi.application'
+WSGI_APPLICATION = 'framework.wsgi.application'
 
 
 # Database
