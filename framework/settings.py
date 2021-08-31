@@ -30,6 +30,7 @@ DJ_ENV.read(BASE_DIR.joinpath('.dj.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-!!e_sxayzd((m(2=9d)_jt1v+t%%9in^-b*hs-7f_3)8rh(%nm'
+SECRET_KEY = f"{DJ_ENV['env']['secret']}"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
