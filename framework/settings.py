@@ -11,9 +11,18 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from pprint import pprint
+import configparser
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
+
+MY_CNF = configparser.ConfigParser()
+MY_CNF.read(BASE_DIR.joinpath('.my.cnf'))
+
+DJ_ENV = configparser.ConfigParser()
+DJ_ENV.read(BASE_DIR.joinpath('.dj.env'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,7 +34,8 @@ SECRET_KEY = 'django-insecure-!!e_sxayzd((m(2=9d)_jt1v+t%%9in^-b*hs-7f_3)8rh(%nm
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-ALLOWED_HOSTS
+ALLOWED_HOSTS = ['.coldforge.net']
 
 
 # Application definition
@@ -72,11 +82,23 @@ WSGI_APPLICATION = 'framework.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
-
 DATABASES = {
-    'default': {
+    'default': {},
+    'clienthost1': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': MY_CNF['clienthost1']['database'],
+        'USER': MY_CNF['clienthost1']['user'],
+        'PASSWORD': MY_CNF['clienthost1']['password'],
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
+    },
+    'clienthost2': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': MY_CNF['clienthost2']['database'],
+        'USER': MY_CNF['clienthost2']['user'],
+        'PASSWORD': MY_CNF['clienthost2']['password'],
+        'HOST': '127.0.0.1',
+        'PORT': '3306',
     }
 }
 
@@ -118,6 +140,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = '/static/'
+
+# Enable sitewade HTTPS
+# https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
+
+CSRF_COOKIE_SECURE = True
+SESSION_COOKIE_SECURE = True
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
