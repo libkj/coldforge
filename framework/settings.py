@@ -18,11 +18,8 @@ import configparser
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-MY_CNF = configparser.ConfigParser()
-MY_CNF.read(BASE_DIR.joinpath('.my.cnf'))
-
-DJ_ENV = configparser.ConfigParser()
-DJ_ENV.read(BASE_DIR.joinpath('.dj.ini'))
+DJ_CNF = configparser.ConfigParser()
+DJ_CNF.read(BASE_DIR.joinpath('.dj.ini'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +27,7 @@ DJ_ENV.read(BASE_DIR.joinpath('.dj.ini'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 #SECRET_KEY = 'django-insecure-!!e_sxayzd((m(2=9d)_jt1v+t%%9in^-b*hs-7f_3)8rh(%nm'
-SECRET_KEY = f"{DJ_ENV['dj-env']['secret']}"
+SECRET_KEY = f"{DJ_CNF['dj-env']['secret']}"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -87,17 +84,17 @@ DATABASES = {
     'default': {},
     'clienthost1': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': MY_CNF['clienthost1']['database'],
-        'USER': MY_CNF['clienthost1']['user'],
-        'PASSWORD': MY_CNF['clienthost1']['password'],
+        'NAME': DJ_CNF['clienthost1']['database'],
+        'USER': DJ_CNF['clienthost1']['user'],
+        'PASSWORD': DJ_CNF['clienthost1']['password'],
         'HOST': '127.0.0.1',
         'PORT': '3306',
     },
     'clienthost2': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': MY_CNF['clienthost2']['database'],
-        'USER': MY_CNF['clienthost2']['user'],
-        'PASSWORD': MY_CNF['clienthost2']['password'],
+        'NAME': DJ_CNF['clienthost2']['database'],
+        'USER': DJ_CNF['clienthost2']['user'],
+        'PASSWORD': DJ_CNF['clienthost2']['password'],
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
