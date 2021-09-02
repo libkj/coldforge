@@ -22,7 +22,8 @@ MY_CNF = configparser.ConfigParser()
 MY_CNF.read(BASE_DIR.joinpath('.my.cnf'))
 
 DJ_ENV = configparser.ConfigParser()
-DJ_ENV.read(BASE_DIR.joinpath('.dj.env'))
+#DJ_ENV.sections()
+DJ_ENV.read(BASE_DIR.joinpath('.dj.ini'))
 
 
 # Quick-start development settings - unsuitable for production
@@ -30,7 +31,7 @@ DJ_ENV.read(BASE_DIR.joinpath('.dj.env'))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = 'django-insecure-!!e_sxayzd((m(2=9d)_jt1v+t%%9in^-b*hs-7f_3)8rh(%nm'
-SECRET_KEY = f"{DJ_ENV['env']['secret']}"
+SECRET_KEY = f"{DJ_ENV['dj-env']['secret']}"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
