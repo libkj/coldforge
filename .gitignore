@@ -131,3 +131,6 @@ dmypy.json
 # environment variables
 .my.cnf
 .dj*
+
+# config generator test
+config.sh

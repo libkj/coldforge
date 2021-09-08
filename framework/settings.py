@@ -12,28 +12,28 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 from pprint import pprint
-import configparser
+import json
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DJ_CNF = configparser.ConfigParser()
-DJ_CNF.read(BASE_DIR.joinpath('.dj.ini'))
+DJ_CNF = None
+with open (BASE_DIR.joinpath('.dj.json')) as data:
+    DJ_CNF = json.load(data)
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-#SECRET_KEY = 'django-insecure-!!e_sxayzd((m(2=9d)_jt1v+t%%9in^-b*hs-7f_3)8rh(%nm'
 SECRET_KEY = f"{DJ_CNF['dj-env']['secret']}"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 # https://docs.djangoproject.com/en/3.2/ref/settings/#std:setting-ALLOWED_HOSTS
-ALLOWED_HOSTS = ['.coldforge.net']
+ALLOWED_HOSTS = DJ_CNF['allowed-hosts']['hosts']
 
 
 # Application definition
