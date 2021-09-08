@@ -97,14 +97,6 @@ DATABASES = {
         'PASSWORD': DJ_CNF['clienthost2']['password'],
         'HOST': '127.0.0.1',
         'PORT': '3306',
-    },
-    'serversettings': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': DJ_CNF['serversettings']['database'],
-        'USER': DJ_CNF['serversettings']['user'],
-        'PASSWORD': DJ_CNF['serversettings']['password'],
-        'HOST': '127.0.0.1',
-        'PORT': '3306'
     }
 }
 
