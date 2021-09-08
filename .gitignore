@@ -131,7 +131,7 @@ dmypy.json
 # settings
 .my.cnf
 .dj*
-allowed_hosts.sql
+allowed-hosts.sql
 
 # config generator test
 config.sh
