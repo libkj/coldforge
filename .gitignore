@@ -128,9 +128,10 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# environment variables
+# settings
 .my.cnf
 .dj*
+allowed_hosts.sql
 
 # config generator test
 config.sh
